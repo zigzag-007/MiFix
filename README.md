@@ -1,4 +1,4 @@
-# 📱 Mi Fix - Expert Mobile Phone Repair Services ⚙️🛠️✨
+# 📱 Mi Fix - Expert Mobile Phone Repair Services ⚙️✨
 
 ![Made with Love](https://img.shields.io/badge/Made%20with-%E2%9D%A4-red?style=for-the-badge)
 ![Expert Repair](https://img.shields.io/badge/%F0%9F%93%B1%20Repair-Expert-blue?style=for-the-badge\&logo=tools)
