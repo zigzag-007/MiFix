@@ -1,6 +1,49 @@
 // Mi Fix Website JavaScript
 
 document.addEventListener('DOMContentLoaded', function() {
+    // Loading Wrapper Functionality
+    const loadingWrapper = document.getElementById('loading-wrapper');
+    const mainContent = document.getElementById('main-content');
+    const loadingProgress = document.getElementById('loading-progress');
+    
+    // Fallback: ensure main content is shown if loading elements don't exist
+    if (!loadingWrapper) {
+        if (mainContent) {
+            mainContent.classList.remove('opacity-0');
+            mainContent.classList.add('opacity-100');
+        }
+        return;
+    }
+    
+    // Start progress bar animation
+    if (loadingProgress) {
+        setTimeout(() => {
+            loadingProgress.classList.remove('w-0');
+            loadingProgress.classList.add('w-full');
+        }, 100);
+    }
+    
+    // Show loading for 2 seconds then reveal main content
+    setTimeout(function() {
+        // Fade out loading wrapper using tailwind classes
+        if (loadingWrapper) {
+            loadingWrapper.classList.add('opacity-0', 'pointer-events-none');
+            loadingWrapper.classList.add('transition-opacity', 'duration-700', 'ease-in-out');
+        }
+        
+        // After fade out transition, show main content
+        setTimeout(function() {
+            if (mainContent) {
+                mainContent.classList.remove('opacity-0');
+                mainContent.classList.add('opacity-100', 'transition-opacity', 'duration-1000', 'ease-in-out');
+            }
+            // Hide loading wrapper completely
+            if (loadingWrapper) {
+                loadingWrapper.style.display = 'none';
+            }
+        }, 700); // Wait for fade-out animation to complete
+    }, 2000); // 2 seconds loading time
+
     // Initialize Lucide icons
     lucide.createIcons();
     
@@ -307,15 +350,15 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Set Home as active by default on page load
     function setActiveNav() {
-        const navLinks = document.querySelectorAll('a[href^="#"]');
-        const homeLinks = document.querySelectorAll('a[href="#home"]');
+        const navLinks = document.querySelectorAll('nav a[href^="#"]'); // Only navbar links
+        const homeLinks = document.querySelectorAll('nav a[href="#home"]'); // Only navbar home links
         
-        // Remove active class from all links first
+        // Remove active class from navbar links first
         navLinks.forEach(link => {
             link.classList.remove('text-orange-600', 'bg-orange-50');
         });
         
-        // Add active class to all home links (desktop and mobile)
+        // Add active class to navbar home links only
         homeLinks.forEach(link => {
             link.classList.add('text-orange-600');
             // Add background for mobile menu item
@@ -328,10 +371,10 @@ document.addEventListener('DOMContentLoaded', function() {
     // Set home as active immediately
     setActiveNav();
     
-    // Active navigation highlighting
+    // Active navigation highlighting - exclude footer links
     window.addEventListener('scroll', function() {
         const sections = document.querySelectorAll('section[id]');
-        const navLinks = document.querySelectorAll('a[href^="#"]');
+        const navLinks = document.querySelectorAll('nav a[href^="#"]'); // Only navbar links, not footer
         
         let current = 'home'; // Default to home
         sections.forEach(section => {

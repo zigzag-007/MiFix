@@ -5,12 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mi Fix - Expert Mobile Phone Repairs</title>
     <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ea580c'><path d='M17 2H7a3 3 0 0 0-3 3v14a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V5a3 3 0 0 0-3-3zM7 4h10a1 1 0 0 1 1 1v1H6V5a1 1 0 0 1 1-1zm10 16H7a1 1 0 0 1-1-1v-1h12v1a1 1 0 0 1-1 1z'/></svg>">
+    
     <!-- Google Fonts - Poppins -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    
     <!-- AOS Animation Library -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -29,6 +31,18 @@
                     },
                     fontSize: {
                         'base': '18px',
+                    },
+                    animation: {
+                        'dots': 'dots 1.5s infinite',
+                    },
+                    keyframes: {
+                        dots: {
+                            '0%': { content: '""' },
+                            '25%': { content: '"."' },
+                            '50%': { content: '".."' },
+                            '75%': { content: '"..."' },
+                            '100%': { content: '""' },
+                        }
                     }
                 }
             }
@@ -36,15 +50,101 @@
     </script>
 </head>
 <body class="font-poppins text-base leading-relaxed text-gray-800">
+    <!-- Loading Wrapper -->
+    <div id="loading-wrapper" class="fixed inset-0 z-[9999] bg-gradient-to-br from-orange-50 via-orange-100 to-red-50 flex items-center justify-center overflow-hidden">
+        <!-- Animated Background Particles -->
+        <div class="absolute inset-0">
+            <!-- Floating Tech Icons -->
+            <div class="absolute top-20 left-20 w-8 h-8 text-orange-400/40 animate-bounce" style="animation-delay: 0.5s; animation-duration: 3s;">
+                <i data-lucide="smartphone" class="w-full h-full"></i>
+            </div>
+            <div class="absolute top-32 right-32 w-12 h-12 text-red-400/30 animate-pulse" style="animation-delay: 1s;">
+                <i data-lucide="cpu" class="w-full h-full"></i>
+            </div>
+            <div class="absolute bottom-32 left-32 w-10 h-10 text-orange-500/35 animate-spin" style="animation-duration: 8s;">
+                <i data-lucide="circuit-board" class="w-full h-full"></i>
+            </div>
+            <div class="absolute top-2/3 right-20 w-14 h-14 text-red-500/30 animate-bounce" style="animation-delay: 2s; animation-duration: 4s;">
+                <i data-lucide="wrench" class="w-full h-full"></i>
+            </div>
+            <div class="absolute bottom-20 right-40 w-6 h-6 text-orange-600/45 animate-pulse" style="animation-delay: 0.8s;">
+                <i data-lucide="zap" class="w-full h-full"></i>
+            </div>
+            <div class="absolute top-40 left-2/3 w-16 h-16 text-red-400/25 animate-bounce" style="animation-delay: 1.5s; animation-duration: 2.5s;">
+                <i data-lucide="battery-charging" class="w-full h-full"></i>
+            </div>
+            
+            <!-- Circuit Pattern Overlay -->
+            <div class="absolute top-0 left-0 w-full h-full opacity-15">
+                <svg viewBox="0 0 400 400" class="w-full h-full">
+                    <defs>
+                        <pattern id="circuit-loader" x="0" y="0" width="80" height="80" patternUnits="userSpaceOnUse">
+                            <path d="M0 40h40M40 0v80M40 40h40M80 40v40" stroke="#ea580c" stroke-width="2" fill="none"/>
+                            <circle cx="40" cy="40" r="3" fill="#ea580c"/>
+                        </pattern>
+                    </defs>
+                    <rect width="400" height="400" fill="url(#circuit-loader)"/>
+                </svg>
+            </div>
+        </div>
+        
+        <!-- Main Loading Content -->
+        <div class="relative z-10 flex flex-col items-center text-center max-w-md mx-auto px-6">
+            <!-- Logo Container with Pulse Animation -->
+            <div class="mb-8 relative">
+                <!-- Glow Ring -->
+                <div class="absolute inset-0 w-32 h-32 bg-orange-300/30 rounded-full animate-ping"></div>
+                <div class="absolute inset-2 w-28 h-28 bg-orange-200/40 rounded-full animate-pulse"></div>
+                
+                <!-- Logo -->
+                <div class="relative w-32 h-32 bg-white rounded-full flex items-center justify-center shadow-2xl loading-logo">
+                    <div class="w-16 h-16 bg-orange-600 rounded-lg flex items-center justify-center transform rotate-12 animate-pulse smartphone-icon">
+                        <i data-lucide="smartphone" class="w-8 h-8 text-white"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Brand Name with Typing Effect -->
+            <h1 class="text-5xl font-extrabold text-gray-800 mb-4 tracking-tight loading-title">
+                Mi Fix
+            </h1>
+            <p class="text-xl text-gray-700 mb-8 font-medium tracking-wide">
+                Expert Mobile Repairs
+            </p>
+            
+            <!-- Modern Loading Bar -->
+            <div class="w-full max-w-xs mb-6">
+                <div class="h-2 bg-orange-200/60 rounded-full overflow-hidden">
+                    <div class="h-full bg-orange-600 rounded-full shadow-lg animate-pulse w-0 transition-all duration-[2000ms] ease-in-out" id="loading-progress"></div>
+                </div>
+            </div>
+            
+            <!-- Loading Text -->
+            <p class="text-gray-600 text-lg font-medium">
+                Loading your experience<span class="after:content-[''] after:animate-dots after:inline-block"></span>
+            </p>
+        </div>
+        
+        <!-- Floating Repair Tools Animation -->
+        <div class="absolute bottom-20 left-20 w-20 h-20 text-orange-500/25 animate-bounce" style="animation-delay: 0.3s; animation-duration: 2.8s;">
+            <i data-lucide="settings" class="w-full h-full"></i>
+        </div>
+        <div class="absolute top-1/4 right-1/4 w-12 h-12 text-red-500/30 animate-spin" style="animation-duration: 6s;">
+            <i data-lucide="cog" class="w-full h-full"></i>
+        </div>
+    </div>
+
+    <!-- Main Content (initially hidden) -->
+    <div id="main-content" class="opacity-0 transition-opacity duration-1000">
     <!-- Navigation -->
-    <nav class="fixed top-0 left-0 right-0 bg-white shadow-sm z-[100] w-full">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-            <div class="flex justify-between items-center h-16 relative">
+        <nav class="fixed top-0 left-0 right-0 bg-white shadow-sm z-[100] w-full">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+                <div class="flex justify-between items-center h-16 relative">
                 <a href="#home" class="flex items-center space-x-2 no-hover">
-                    <div class="w-9 h-9 bg-orange-600 rounded flex items-center justify-center">
+                        <div class="w-9 h-9 bg-orange-600 rounded flex items-center justify-center">
                         <i data-lucide="smartphone" class="w-5 h-5 text-white"></i>
                     </div>
-                    <span class="text-2xl font-bold text-gray-900 tracking-tight">Mi Fix</span>
+                        <span class="text-2xl font-bold text-gray-900 tracking-tight">Mi Fix</span>
                 </a>
                 
                 <!-- Desktop Menu -->
@@ -59,22 +159,22 @@
                 </div>
                 
                 <!-- Mobile Menu Button -->
-                <button class="min-[850px]:hidden relative z-[200] p-2 text-gray-700 hover:text-orange-600 focus:outline-none" id="mobile-menu-btn" title="Open Menu">
+                    <button class="min-[850px]:hidden relative z-[200] p-2 text-gray-700 hover:text-orange-600 focus:outline-none" id="mobile-menu-btn" title="Open Menu">
                     <i data-lucide="menu" class="w-6 h-6"></i>
                 </button>
             </div>
             
             <!-- Mobile Menu Overlay -->
-            <div class="min-[850px]:hidden fixed inset-0 bg-black bg-opacity-50 z-[110] transition-opacity duration-300 opacity-0 pointer-events-none" id="mobile-menu-overlay"></div>
+                <div class="min-[850px]:hidden fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-[110] transition-opacity duration-300 opacity-0 pointer-events-none" id="mobile-menu-overlay"></div>
             
             <!-- Mobile Menu -->
-            <div class="min-[850px]:hidden fixed top-0 left-0 h-full w-80 bg-white shadow-xl z-[120] transform -translate-x-full transition-transform duration-300 ease-in-out" id="mobile-menu">
+                <div class="min-[850px]:hidden fixed top-0 left-0 h-full w-80 bg-white shadow-xl z-[120] transform -translate-x-full transition-transform duration-300 ease-in-out" id="mobile-menu">
                 <div class="flex items-center justify-between p-4 border-b">
                     <div class="flex items-center space-x-2">
                         <div class="w-8 h-8 bg-orange-600 rounded flex items-center justify-center">
                             <i data-lucide="smartphone" class="w-5 h-5 text-white"></i>
                         </div>
-                        <span class="text-2xl font-bold text-gray-900 tracking-tight">Mi Fix</span>
+                            <span class="text-2xl font-bold text-gray-900 tracking-tight">Mi Fix</span>
                     </div>
                     <button id="mobile-menu-close" class="p-2" title="Close Menu">
                         <i data-lucide="x" class="w-6 h-6 text-gray-600"></i>
@@ -94,95 +194,95 @@
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="relative min-h-screen flex items-center bg-gradient-to-br from-orange-50 to-red-50 pt-20 pb-8 overflow-hidden">
-        <!-- Tech Decorative Elements -->
-        <div class="absolute top-32 left-32 w-16 h-16 text-orange-300/25 animate-pulse">
-            <i data-lucide="smartphone" class="w-full h-full"></i>
-        </div>
-        <div class="absolute top-20 right-32 w-12 h-12 text-red-300/30 animate-bounce" style="animation-delay: 1s;">
-            <i data-lucide="cpu" class="w-full h-full"></i>
-        </div>
-        <div class="absolute bottom-40 left-16 w-18 h-18 text-orange-400/20 animate-spin" style="animation-duration: 8s;">
-            <i data-lucide="circuit-board" class="w-full h-full"></i>
-        </div>
-        <div class="absolute top-2/3 right-20 w-14 h-14 text-red-400/25 animate-pulse" style="animation-delay: 2s;">
-            <i data-lucide="wrench" class="w-full h-full"></i>
-        </div>
-        <div class="absolute bottom-32 right-40 w-10 h-10 text-orange-300/30 animate-bounce" style="animation-delay: 0.5s;">
-            <i data-lucide="zap" class="w-full h-full"></i>
-        </div>
-        <div class="absolute top-40 left-2/3 w-12 h-12 text-red-300/20 animate-pulse" style="animation-delay: 1.8s;">
-            <i data-lucide="battery-charging" class="w-full h-full"></i>
-        </div>
-        <!-- Floating tech elements -->
-        <div class="absolute top-1/4 right-1/2 w-8 h-8 text-orange-400/15 animate-bounce" style="animation-delay: 2.5s; animation-duration: 3s;">
-            <i data-lucide="wifi" class="w-full h-full"></i>
-        </div>
-        <!-- Circuit pattern overlay -->
-        <div class="absolute top-0 right-0 w-96 h-96 opacity-5">
-            <svg viewBox="0 0 200 200" class="w-full h-full animate-pulse">
-                <defs>
-                    <pattern id="circuit-home" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
-                        <path d="M0 20h20M20 0v40M20 20h20M40 20v20" stroke="#ea580c" stroke-width="1" fill="none"/>
-                        <circle cx="20" cy="20" r="2" fill="#ea580c"/>
-                    </pattern>
-                </defs>
-                <rect width="200" height="200" fill="url(#circuit-home)"/>
-            </svg>
-        </div>
-        
-        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+        <section id="home" class="relative min-h-screen flex items-center bg-gradient-to-br from-orange-50 to-red-50 pt-20 pb-8 overflow-hidden">
+            <!-- Tech Decorative Elements -->
+            <div class="absolute top-32 left-32 w-16 h-16 text-orange-300/25 animate-pulse">
+                <i data-lucide="smartphone" class="w-full h-full"></i>
+            </div>
+            <div class="absolute top-20 right-32 w-12 h-12 text-red-300/30 animate-bounce" style="animation-delay: 1s;">
+                <i data-lucide="cpu" class="w-full h-full"></i>
+            </div>
+            <div class="absolute bottom-40 left-16 w-18 h-18 text-orange-400/20 animate-spin" style="animation-duration: 8s;">
+                <i data-lucide="circuit-board" class="w-full h-full"></i>
+            </div>
+            <div class="absolute top-2/3 right-20 w-14 h-14 text-red-400/25 animate-pulse" style="animation-delay: 2s;">
+                <i data-lucide="wrench" class="w-full h-full"></i>
+            </div>
+            <div class="absolute bottom-32 right-40 w-10 h-10 text-orange-300/30 animate-bounce" style="animation-delay: 0.5s;">
+                <i data-lucide="zap" class="w-full h-full"></i>
+            </div>
+            <div class="absolute top-40 left-2/3 w-12 h-12 text-red-300/20 animate-pulse" style="animation-delay: 1.8s;">
+                <i data-lucide="battery-charging" class="w-full h-full"></i>
+            </div>
+            <!-- Floating tech elements -->
+            <div class="absolute top-1/4 right-1/2 w-8 h-8 text-orange-400/15 animate-bounce" style="animation-delay: 2.5s; animation-duration: 3s;">
+                <i data-lucide="wifi" class="w-full h-full"></i>
+            </div>
+            <!-- Circuit pattern overlay -->
+            <div class="absolute top-0 right-0 w-96 h-96 opacity-5">
+                <svg viewBox="0 0 200 200" class="w-full h-full animate-pulse">
+                    <defs>
+                        <pattern id="circuit-home" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+                            <path d="M0 20h20M20 0v40M20 20h20M40 20v20" stroke="#ea580c" stroke-width="1" fill="none"/>
+                            <circle cx="20" cy="20" r="2" fill="#ea580c"/>
+                        </pattern>
+                    </defs>
+                    <rect width="200" height="200" fill="url(#circuit-home)"/>
+                </svg>
+            </div>
+            
+            <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
             <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
                 <div class="text-center lg:text-left">
-                    <div class="flex items-center justify-center lg:justify-start space-x-2 mb-6" data-aos="fade-right" data-aos-duration="800">
+                        <div class="flex items-center justify-center lg:justify-start space-x-2 mb-6" data-aos="fade-right" data-aos-duration="800">
                         <i data-lucide="smartphone" class="w-5 h-5 text-orange-600"></i>
-                        <span class="text-orange-600 font-semibold text-base sm:text-lg tracking-wide">Professional Mobile Repair</span>
+                            <span class="text-orange-600 font-semibold text-base sm:text-lg tracking-wide">Professional Mobile Repair</span>
                     </div>
-                    <h1 class="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-extrabold text-gray-900 mb-8 leading-tight tracking-tight" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+                        <h1 class="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-extrabold text-gray-900 mb-8 leading-tight tracking-tight" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
                         Mi Fix - Expert Mobile Phone Repairs
                     </h1>
-                    <p class="text-lg sm:text-xl text-gray-600 mb-10 max-w-2xl mx-auto lg:mx-0 leading-relaxed" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
+                        <p class="text-lg sm:text-xl text-gray-600 mb-10 max-w-2xl mx-auto lg:mx-0 leading-relaxed" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
                         Fast, reliable, and expert service for all your mobile repair needs. From hardware fixes to software solutions, we've got you covered with professional results you can trust.
                     </p>
-                    <div class="flex flex-col sm:flex-row gap-5 mb-10 justify-center lg:justify-start" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="600">
-                        <a href="#contact" class="bg-orange-600 text-white px-8 sm:px-10 py-4 rounded-lg hover:bg-orange-700 transition-colors text-center font-semibold text-lg">
+                        <div class="flex flex-col sm:flex-row gap-5 mb-10 justify-center lg:justify-start" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="600">
+                            <a href="#contact" class="bg-orange-600 text-white px-8 sm:px-10 py-4 rounded-lg hover:bg-orange-700 transition-colors text-center font-semibold text-lg">
                             Get Your Phone Fixed
                         </a>
-                        <a href="#services" class="border-2 border-gray-300 text-gray-700 px-8 sm:px-10 py-4 rounded-lg hover:bg-gray-50 transition-colors text-center font-semibold text-lg">
+                            <a href="#services" class="border-2 border-gray-300 text-gray-700 px-8 sm:px-10 py-4 rounded-lg hover:bg-gray-50 transition-colors text-center font-semibold text-lg">
                             View Services
                         </a>
                     </div>
-                    <div class="flex items-center justify-center lg:justify-start text-gray-600" data-aos="fade-right" data-aos-duration="800" data-aos-delay="800">
-                        <i data-lucide="map-pin" class="w-5 h-5 mr-2"></i>
-                        <span class="text-base sm:text-lg font-medium">367 New Street, Weligama</span>
+                        <div class="flex items-center justify-center lg:justify-start text-gray-600" data-aos="fade-right" data-aos-duration="800" data-aos-delay="800">
+                            <i data-lucide="map-pin" class="w-5 h-5 mr-2"></i>
+                            <span class="text-base sm:text-lg font-medium">367 New Street, Weligama</span>
                     </div>
                 </div>
                 
                 <!-- Service Showcase Grid -->
-                <div class="grid grid-cols-2 gap-4 sm:gap-6 mt-8 lg:mt-0" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="300">
-                    <div class="bg-white p-4 sm:p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow" data-aos="zoom-in" data-aos-duration="600" data-aos-delay="100">
+                    <div class="grid grid-cols-2 gap-4 sm:gap-6 mt-8 lg:mt-0" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="300">
+                        <div class="bg-white p-4 sm:p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow" data-aos="zoom-in" data-aos-duration="600" data-aos-delay="100">
                         <div class="w-10 h-10 sm:w-12 sm:h-12 bg-orange-100 rounded-lg flex items-center justify-center mb-3 sm:mb-4">
                             <i data-lucide="wrench" class="w-5 h-5 sm:w-6 sm:h-6 text-orange-600"></i>
+                            </div>
+                            <h3 class="font-semibold text-gray-900 text-base sm:text-lg">Hardware Repairs</h3>
                         </div>
-                        <h3 class="font-semibold text-gray-900 text-base sm:text-lg">Hardware Repairs</h3>
+                        <div class="bg-white p-4 sm:p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow" data-aos="zoom-in" data-aos-duration="600" data-aos-delay="200">
+                            <div class="w-12 h-12 sm:w-14 sm:h-14 bg-red-100 rounded-lg flex items-center justify-center mb-3 sm:mb-4">
+                                <i data-lucide="cpu" class="w-6 h-6 sm:w-7 sm:h-7 text-red-600"></i>
                     </div>
-                    <div class="bg-white p-4 sm:p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow" data-aos="zoom-in" data-aos-duration="600" data-aos-delay="200">
-                        <div class="w-12 h-12 sm:w-14 sm:h-14 bg-red-100 rounded-lg flex items-center justify-center mb-3 sm:mb-4">
-                            <i data-lucide="cpu" class="w-6 h-6 sm:w-7 sm:h-7 text-red-600"></i>
+                            <h3 class="font-semibold text-gray-900 text-base sm:text-lg">Chip-Level Fixes</h3>
                         </div>
-                        <h3 class="font-semibold text-gray-900 text-base sm:text-lg">Chip-Level Fixes</h3>
+                        <div class="bg-white p-4 sm:p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow" data-aos="zoom-in" data-aos-duration="600" data-aos-delay="300">
+                            <div class="w-12 h-12 sm:w-14 sm:h-14 bg-blue-100 rounded-lg flex items-center justify-center mb-3 sm:mb-4">
+                                <i data-lucide="droplets" class="w-6 h-6 sm:w-7 sm:h-7 text-blue-600"></i>
                     </div>
-                    <div class="bg-white p-4 sm:p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow" data-aos="zoom-in" data-aos-duration="600" data-aos-delay="300">
-                        <div class="w-12 h-12 sm:w-14 sm:h-14 bg-blue-100 rounded-lg flex items-center justify-center mb-3 sm:mb-4">
-                            <i data-lucide="droplets" class="w-6 h-6 sm:w-7 sm:h-7 text-blue-600"></i>
+                            <h3 class="font-semibold text-gray-900 text-base sm:text-lg">Water Damage</h3>
                         </div>
-                        <h3 class="font-semibold text-gray-900 text-base sm:text-lg">Water Damage</h3>
+                        <div class="bg-white p-4 sm:p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow" data-aos="zoom-in" data-aos-duration="600" data-aos-delay="400">
+                            <div class="w-12 h-12 sm:w-14 sm:h-14 bg-green-100 rounded-lg flex items-center justify-center mb-3 sm:mb-4">
+                                <i data-lucide="monitor" class="w-6 h-6 sm:w-7 sm:h-7 text-green-600"></i>
                     </div>
-                    <div class="bg-white p-4 sm:p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow" data-aos="zoom-in" data-aos-duration="600" data-aos-delay="400">
-                        <div class="w-12 h-12 sm:w-14 sm:h-14 bg-green-100 rounded-lg flex items-center justify-center mb-3 sm:mb-4">
-                            <i data-lucide="monitor" class="w-6 h-6 sm:w-7 sm:h-7 text-green-600"></i>
-                        </div>
-                        <h3 class="font-semibold text-gray-900 text-base sm:text-lg">Software Issues</h3>
+                            <h3 class="font-semibold text-gray-900 text-base sm:text-lg">Software Issues</h3>
                     </div>
                 </div>
             </div>
@@ -192,22 +292,22 @@
     <!-- Services Section -->
     <section id="services" class="min-h-screen flex items-center py-12 sm:py-16 lg:py-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-            <div class="text-center mb-16 sm:mb-20" data-aos="fade-up" data-aos-duration="800">
-                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 tracking-tight">Our Services</h2>
-                <p class="text-lg sm:text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+                <div class="text-center mb-16 sm:mb-20" data-aos="fade-up" data-aos-duration="800">
+                    <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 tracking-tight">Our Services</h2>
+                    <p class="text-lg sm:text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
                     Comprehensive mobile phone repair services with expert technicians and quality parts
                 </p>
             </div>
             
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
                 <!-- Hardware Repairs -->
-                <div class="bg-white p-8 sm:p-10 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow" data-aos="fade-up" data-aos-duration="600" data-aos-delay="100">
-                    <div class="w-16 h-16 sm:w-18 sm:h-18 bg-orange-100 rounded-xl flex items-center justify-center mb-6 sm:mb-8">
-                        <i data-lucide="wrench" class="w-8 h-8 sm:w-9 sm:h-9 text-orange-600"></i>
+                    <div class="bg-white p-8 sm:p-10 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow" data-aos="fade-up" data-aos-duration="600" data-aos-delay="100">
+                        <div class="w-16 h-16 sm:w-18 sm:h-18 bg-orange-100 rounded-xl flex items-center justify-center mb-6 sm:mb-8">
+                            <i data-lucide="wrench" class="w-8 h-8 sm:w-9 sm:h-9 text-orange-600"></i>
                     </div>
-                    <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-4 tracking-tight">Hardware Repairs 🔩</h3>
-                    <p class="text-base sm:text-lg text-gray-600 mb-6 leading-relaxed">Complete hardware diagnostics and repairs</p>
-                    <ul class="space-y-1 text-base sm:text-lg text-gray-600">
+                        <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-4 tracking-tight">Hardware Repairs 🔩</h3>
+                        <p class="text-base sm:text-lg text-gray-600 mb-6 leading-relaxed">Complete hardware diagnostics and repairs</p>
+                        <ul class="space-y-1 text-base sm:text-lg text-gray-600">
                         <li>• Screen replacements</li>
                         <li>• Battery replacements</li>
                         <li>• Charging port repairs</li>
@@ -216,13 +316,13 @@
                 </div>
                 
                 <!-- Chip-Level Fixes -->
-                <div class="bg-white p-8 sm:p-10 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow" data-aos="fade-up" data-aos-duration="600" data-aos-delay="200">
-                    <div class="w-16 h-16 sm:w-18 sm:h-18 bg-red-100 rounded-xl flex items-center justify-center mb-6 sm:mb-8">
-                        <i data-lucide="cpu" class="w-8 h-8 sm:w-9 sm:h-9 text-red-600"></i>
+                    <div class="bg-white p-8 sm:p-10 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow" data-aos="fade-up" data-aos-duration="600" data-aos-delay="200">
+                        <div class="w-16 h-16 sm:w-18 sm:h-18 bg-red-100 rounded-xl flex items-center justify-center mb-6 sm:mb-8">
+                            <i data-lucide="cpu" class="w-8 h-8 sm:w-9 sm:h-9 text-red-600"></i>
                     </div>
-                    <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-4 tracking-tight">Chip-Level Fixes 🔬</h3>
-                    <p class="text-base sm:text-lg text-gray-600 mb-6 leading-relaxed">Advanced motherboard and IC repairs</p>
-                    <ul class="space-y-1 text-base sm:text-lg text-gray-600">
+                        <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-4 tracking-tight">Chip-Level Fixes 🔬</h3>
+                        <p class="text-base sm:text-lg text-gray-600 mb-6 leading-relaxed">Advanced motherboard and IC repairs</p>
+                        <ul class="space-y-1 text-base sm:text-lg text-gray-600">
                         <li>• IC replacement</li>
                         <li>• Motherboard repairs</li>
                         <li>• Power IC issues</li>
@@ -231,13 +331,13 @@
                 </div>
                 
                 <!-- Water Damage -->
-                <div class="bg-white p-8 sm:p-10 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow" data-aos="fade-up" data-aos-duration="600" data-aos-delay="300">
-                    <div class="w-16 h-16 sm:w-18 sm:h-18 bg-blue-100 rounded-xl flex items-center justify-center mb-6 sm:mb-8">
-                        <i data-lucide="droplets" class="w-8 h-8 sm:w-9 sm:h-9 text-blue-600"></i>
+                    <div class="bg-white p-8 sm:p-10 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow" data-aos="fade-up" data-aos-duration="600" data-aos-delay="300">
+                        <div class="w-16 h-16 sm:w-18 sm:h-18 bg-blue-100 rounded-xl flex items-center justify-center mb-6 sm:mb-8">
+                            <i data-lucide="droplets" class="w-8 h-8 sm:w-9 sm:h-9 text-blue-600"></i>
                     </div>
-                    <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-4 tracking-tight">Water Damage 💧</h3>
-                    <p class="text-base sm:text-lg text-gray-600 mb-6 leading-relaxed">Professional water damage restoration</p>
-                    <ul class="space-y-1 text-base sm:text-lg text-gray-600">
+                        <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-4 tracking-tight">Water Damage 💧</h3>
+                        <p class="text-base sm:text-lg text-gray-600 mb-6 leading-relaxed">Professional water damage restoration</p>
+                        <ul class="space-y-1 text-base sm:text-lg text-gray-600">
                         <li>• Complete disassembly</li>
                         <li>• Ultrasonic cleaning</li>
                         <li>• Component replacement</li>
@@ -246,13 +346,13 @@
                 </div>
                 
                 <!-- Board Repairs -->
-                <div class="bg-white p-8 sm:p-10 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow" data-aos="fade-up" data-aos-duration="600" data-aos-delay="400">
-                    <div class="w-16 h-16 sm:w-18 sm:h-18 bg-green-100 rounded-xl flex items-center justify-center mb-6 sm:mb-8">
-                        <i data-lucide="settings" class="w-8 h-8 sm:w-9 sm:h-9 text-green-600"></i>
+                    <div class="bg-white p-8 sm:p-10 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow" data-aos="fade-up" data-aos-duration="600" data-aos-delay="400">
+                        <div class="w-16 h-16 sm:w-18 sm:h-18 bg-green-100 rounded-xl flex items-center justify-center mb-6 sm:mb-8">
+                            <i data-lucide="settings" class="w-8 h-8 sm:w-9 sm:h-9 text-green-600"></i>
                     </div>
-                    <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-4 tracking-tight">Board Repairs 🛠️</h3>
-                    <p class="text-base sm:text-lg text-gray-600 mb-6 leading-relaxed">Motherboard and circuit repairs</p>
-                    <ul class="space-y-1 text-base sm:text-lg text-gray-600">
+                        <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-4 tracking-tight">Board Repairs 🛠️</h3>
+                        <p class="text-base sm:text-lg text-gray-600 mb-6 leading-relaxed">Motherboard and circuit repairs</p>
+                        <ul class="space-y-1 text-base sm:text-lg text-gray-600">
                         <li>• Circuit board repairs</li>
                         <li>• Trace repairs</li>
                         <li>• Component soldering</li>
@@ -261,28 +361,28 @@
                 </div>
                 
                 <!-- Software Solutions -->
-                <div class="bg-white p-8 sm:p-10 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow" data-aos="fade-up" data-aos-duration="600" data-aos-delay="500">
-                    <div class="w-16 h-16 sm:w-18 sm:h-18 bg-purple-100 rounded-xl flex items-center justify-center mb-6 sm:mb-8">
-                        <i data-lucide="monitor" class="w-8 h-8 sm:w-9 sm:h-9 text-purple-600"></i>
+                    <div class="bg-white p-8 sm:p-10 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow" data-aos="fade-up" data-aos-duration="600" data-aos-delay="500">
+                        <div class="w-16 h-16 sm:w-18 sm:h-18 bg-purple-100 rounded-xl flex items-center justify-center mb-6 sm:mb-8">
+                            <i data-lucide="monitor" class="w-8 h-8 sm:w-9 sm:h-9 text-purple-600"></i>
                     </div>
-                    <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-4 tracking-tight">Software Solutions 💻</h3>
-                    <p class="text-base sm:text-lg text-gray-600 mb-6 leading-relaxed">Software unlocks and fixes</p>
-                    <ul class="space-y-1 text-base sm:text-lg text-gray-600">
-                        <li>• FRP unlocks 🔓</li>
-                        <li>• iPhone passcode removal 📴</li>
-                        <li>• Android screen unlocks 📲</li>
+                        <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-4 tracking-tight">Software Solutions 💻</h3>
+                        <p class="text-base sm:text-lg text-gray-600 mb-6 leading-relaxed">Software unlocks and fixes</p>
+                        <ul class="space-y-1 text-base sm:text-lg text-gray-600">
+                        <li>• FRP unlocks</li>
+                        <li>• iPhone passcode removal</li>
+                        <li>• Android screen unlocks</li>
                         <li>• Software troubleshooting</li>
                     </ul>
                 </div>
                 
                 <!-- Device Protection -->
-                <div class="bg-white p-8 sm:p-10 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow" data-aos="fade-up" data-aos-duration="600" data-aos-delay="600">
-                    <div class="w-16 h-16 sm:w-18 sm:h-18 bg-yellow-100 rounded-xl flex items-center justify-center mb-6 sm:mb-8">
-                        <i data-lucide="shield" class="w-8 h-8 sm:w-9 sm:h-9 text-yellow-600"></i>
+                    <div class="bg-white p-8 sm:p-10 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow" data-aos="fade-up" data-aos-duration="600" data-aos-delay="600">
+                        <div class="w-16 h-16 sm:w-18 sm:h-18 bg-yellow-100 rounded-xl flex items-center justify-center mb-6 sm:mb-8">
+                            <i data-lucide="shield" class="w-8 h-8 sm:w-9 sm:h-9 text-yellow-600"></i>
                     </div>
-                    <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-4 tracking-tight">Device Protection 🛡️</h3>
-                    <p class="text-base sm:text-lg text-gray-600 mb-6 leading-relaxed">Keep your device safe</p>
-                    <ul class="space-y-1 text-base sm:text-lg text-gray-600">
+                        <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-4 tracking-tight">Device Protection 🛡️</h3>
+                        <p class="text-base sm:text-lg text-gray-600 mb-6 leading-relaxed">Keep your device safe</p>
+                        <ul class="space-y-1 text-base sm:text-lg text-gray-600">
                         <li>• Screen protectors</li>
                         <li>• Phone cases</li>
                         <li>• Waterproofing</li>
@@ -294,70 +394,70 @@
     </section>
 
         <!-- About Section -->
-    <section id="about" class="relative py-16 sm:py-20 lg:py-24 bg-gradient-to-br from-orange-50 to-red-50 overflow-hidden">
-        <!-- Floating Repair Tools Animation -->
-        <div class="absolute top-28 right-28 w-14 h-14 text-orange-300/30 animate-bounce" style="animation-delay: 0.5s; animation-duration: 2.5s;">
-            <i data-lucide="screwdriver" class="w-full h-full"></i>
-        </div>
-        <div class="absolute bottom-28 left-28 w-16 h-16 text-red-300/25 animate-pulse" style="animation-delay: 1.2s;">
-            <i data-lucide="battery" class="w-full h-full"></i>
-        </div>
-        <div class="absolute top-1/2 left-20 w-12 h-12 text-orange-400/35 animate-spin" style="animation-duration: 12s;">
-            <i data-lucide="refresh-cw" class="w-full h-full"></i>
-        </div>
-        <div class="absolute bottom-1/3 right-32 w-10 h-10 text-red-400/30 animate-pulse" style="animation-delay: 2s;">
-            <i data-lucide="check-circle" class="w-full h-full"></i>
-        </div>
-        <div class="absolute top-40 left-1/2 w-8 h-8 text-orange-300/20 animate-bounce" style="animation-delay: 3s; animation-duration: 4s;">
-            <i data-lucide="shield-check" class="w-full h-full"></i>
-        </div>
-        <div class="absolute bottom-20 right-20 w-12 h-12 text-red-300/25 animate-pulse" style="animation-delay: 1.8s;">
-            <i data-lucide="tool" class="w-full h-full"></i>
-        </div>
-        <!-- Floating success indicators -->
-        <div class="absolute top-20 left-1/3 w-6 h-6 text-orange-400/15 animate-bounce" style="animation-delay: 4s; animation-duration: 3s;">
-            <i data-lucide="check" class="w-full h-full"></i>
-        </div>
-        <div class="absolute bottom-40 right-1/3 w-8 h-8 text-red-300/20 animate-pulse" style="animation-delay: 2.7s;">
-            <i data-lucide="star" class="w-full h-full"></i>
-        </div>
-        <!-- Floating phone silhouettes -->
-        <div class="absolute top-1/3 right-16 w-64 h-64 opacity-8 animate-pulse" style="animation-duration: 6s;">
-            <svg viewBox="0 0 100 150" class="w-full h-full">
-                <rect x="30" y="15" width="40" height="120" rx="8" fill="none" stroke="#ea580c" stroke-width="0.8" opacity="0.15"/>
-                <rect x="35" y="25" width="30" height="60" rx="3" fill="#dc2626" opacity="0.08"/>
-                <circle cx="50" cy="105" r="5" fill="none" stroke="#ea580c" stroke-width="0.5" opacity="0.2"/>
-                <rect x="40" y="120" width="20" height="3" rx="1.5" fill="#ea580c" opacity="0.1"/>
-            </svg>
-        </div>
-        
-        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section id="about" class="relative py-16 sm:py-20 lg:py-24 bg-gradient-to-br from-orange-50 to-red-50 overflow-hidden">
+            <!-- Floating Repair Tools Animation -->
+            <div class="absolute top-28 right-28 w-14 h-14 text-orange-300/30 animate-bounce" style="animation-delay: 0.5s; animation-duration: 2.5s;">
+                <i data-lucide="screwdriver" class="w-full h-full"></i>
+            </div>
+            <div class="absolute bottom-28 left-28 w-16 h-16 text-red-300/25 animate-pulse" style="animation-delay: 1.2s;">
+                <i data-lucide="battery" class="w-full h-full"></i>
+            </div>
+            <div class="absolute top-1/2 left-20 w-12 h-12 text-orange-400/35 animate-spin" style="animation-duration: 12s;">
+                <i data-lucide="refresh-cw" class="w-full h-full"></i>
+            </div>
+            <div class="absolute bottom-1/3 right-32 w-10 h-10 text-red-400/30 animate-pulse" style="animation-delay: 2s;">
+                <i data-lucide="check-circle" class="w-full h-full"></i>
+            </div>
+            <div class="absolute top-40 left-1/2 w-8 h-8 text-orange-300/20 animate-bounce" style="animation-delay: 3s; animation-duration: 4s;">
+                <i data-lucide="shield-check" class="w-full h-full"></i>
+            </div>
+            <div class="absolute bottom-20 right-20 w-12 h-12 text-red-300/25 animate-pulse" style="animation-delay: 1.8s;">
+                <i data-lucide="tool" class="w-full h-full"></i>
+            </div>
+            <!-- Floating success indicators -->
+            <div class="absolute top-20 left-1/3 w-6 h-6 text-orange-400/15 animate-bounce" style="animation-delay: 4s; animation-duration: 3s;">
+                <i data-lucide="check" class="w-full h-full"></i>
+            </div>
+            <div class="absolute bottom-40 right-1/3 w-8 h-8 text-red-300/20 animate-pulse" style="animation-delay: 2.7s;">
+                <i data-lucide="star" class="w-full h-full"></i>
+            </div>
+            <!-- Floating phone silhouettes -->
+            <div class="absolute top-1/3 right-16 w-64 h-64 opacity-8 animate-pulse" style="animation-duration: 6s;">
+                <svg viewBox="0 0 100 150" class="w-full h-full">
+                    <rect x="30" y="15" width="40" height="120" rx="8" fill="none" stroke="#ea580c" stroke-width="0.8" opacity="0.15"/>
+                    <rect x="35" y="25" width="30" height="60" rx="3" fill="#dc2626" opacity="0.08"/>
+                    <circle cx="50" cy="105" r="5" fill="none" stroke="#ea580c" stroke-width="0.5" opacity="0.2"/>
+                    <rect x="40" y="120" width="20" height="3" rx="1.5" fill="#ea580c" opacity="0.1"/>
+                </svg>
+            </div>
+            
+            <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
                 <div class="text-center lg:text-left">
-                    <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-8 tracking-tight" data-aos="fade-right" data-aos-duration="800">About Mi Fix</h2>
-                    <p class="text-lg sm:text-xl text-gray-600 mb-8 leading-relaxed" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
-                        Located at 367 New Street, Weligama, Mi Fix is your trusted partner for all mobile phone repair needs. We specialize in comprehensive repair services, from basic hardware fixes to complex chip-level repairs.
+                        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-8 tracking-tight" data-aos="fade-right" data-aos-duration="800">About Mi Fix</h2>
+                        <p class="text-lg sm:text-xl text-gray-600 mb-8 leading-relaxed" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
+                            Mi Fix, your go-to source for all mobile phone repair needs, is situated at 367 New Street, Weligama. From straightforward hardware fixes to intricate chip-level repairs, we specialize in complete repair services.
                     </p>
-                    <p class="text-lg sm:text-xl text-gray-600 mb-10 leading-relaxed" data-aos="fade-up" data-aos-duration="800" data-aos-delay="400">
-                        Our experienced technicians use state-of-the-art equipment and genuine parts to ensure your device is restored to perfect working condition. Whether it's water damage, software issues, or hardware problems, we have the expertise to fix it.
+                        <p class="text-lg sm:text-xl text-gray-600 mb-10 leading-relaxed" data-aos="fade-up" data-aos-duration="800" data-aos-delay="400">
+                            Modern tools and authentic components are used by our skilled technicians to guarantee that your device is returned to optimal functioning condition. We have the knowledge to resolve any issues, be they hardware, software, or water damage.
                     </p>
                     
-                    <div class="grid grid-cols-2 gap-8 sm:gap-10 max-w-lg mx-auto lg:mx-0" data-aos="fade-up" data-aos-duration="800" data-aos-delay="600">
-                        <div class="text-center lg:text-left" data-aos="zoom-in" data-aos-duration="600" data-aos-delay="800">
-                            <div class="text-3xl sm:text-4xl font-bold text-orange-600 mb-3">500+</div>
-                            <div class="text-base sm:text-lg text-gray-600 font-medium">Devices Repaired</div>
+                        <div class="grid grid-cols-2 gap-8 sm:gap-10 max-w-lg mx-auto lg:mx-0" data-aos="fade-up" data-aos-duration="800" data-aos-delay="600">
+                            <div class="text-center lg:text-left" data-aos="zoom-in" data-aos-duration="600" data-aos-delay="800">
+                                <div class="text-3xl sm:text-4xl font-bold text-orange-600 mb-3">500+</div>
+                                <div class="text-base sm:text-lg text-gray-600 font-medium">Devices Repaired</div>
                         </div>
-                        <div class="text-center lg:text-left" data-aos="zoom-in" data-aos-duration="600" data-aos-delay="1000">
-                            <div class="text-3xl sm:text-4xl font-bold text-orange-600 mb-3">98%</div>
-                            <div class="text-base sm:text-lg text-gray-600 font-medium">Success Rate</div>
+                            <div class="text-center lg:text-left" data-aos="zoom-in" data-aos-duration="600" data-aos-delay="1000">
+                                <div class="text-3xl sm:text-4xl font-bold text-orange-600 mb-3">98%</div>
+                                <div class="text-base sm:text-lg text-gray-600 font-medium">Success Rate</div>
                         </div>
                     </div>
                 </div>
                 
                 <!-- About Image -->
-                <div class="relative order-first lg:order-last mt-8 lg:mt-0" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="400">
+                    <div class="relative order-first lg:order-last mt-8 lg:mt-0" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="400">
                     <img 
-                        src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
+                        src="assets/img/about.png" 
                         alt="Mobile phone repair tools and disassembled smartphone components on professional workbench"
                         class="rounded-xl shadow-lg w-full h-64 sm:h-80 lg:h-96 object-cover"
                         loading="lazy"
@@ -371,87 +471,87 @@
     <!-- Features Section -->
     <section id="features" class="py-24">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-20" data-aos="fade-up" data-aos-duration="800">
-                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 tracking-tight">Why Choose Our Services</h2>
-                <p class="text-lg sm:text-xl text-gray-600 leading-relaxed max-w-4xl mx-auto">
-                    We offer premium repair services with features that set us apart from<br>
+                <div class="text-center mb-20" data-aos="fade-up" data-aos-duration="800">
+                    <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 tracking-tight">Why Choose Our Services</h2>
+                    <p class="text-lg sm:text-xl text-gray-600 leading-relaxed max-w-4xl mx-auto">
+                        We offer premium repair services with features that set us apart from
                     the competition
                 </p>
             </div>
             
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-10">
-                <div class="text-center" data-aos="fade-up" data-aos-duration="600" data-aos-delay="100">
-                    <div class="w-24 h-24 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-8">
-                        <i data-lucide="zap" class="w-12 h-12 text-orange-600"></i>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-10">
+                    <div class="text-center" data-aos="fade-up" data-aos-duration="600" data-aos-delay="100">
+                        <div class="w-24 h-24 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-8">
+                            <i data-lucide="zap" class="w-12 h-12 text-orange-600"></i>
+                        </div>
+                        <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-4 tracking-tight">Fast Service </h3>
+                        <p class="text-gray-600 text-base sm:text-lg leading-relaxed">Quick diagnostics and repair turnaround times</p>
                     </div>
-                    <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-4 tracking-tight">Fast Service ⚡</h3>
-                    <p class="text-gray-600 text-base sm:text-lg leading-relaxed">Quick diagnostics and repair turnaround times</p>
+                    
+                    <div class="text-center" data-aos="fade-up" data-aos-duration="600" data-aos-delay="200">
+                        <div class="w-24 h-24 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-8">
+                            <i data-lucide="check-circle" class="w-12 h-12 text-green-600"></i>
                 </div>
-                
-                <div class="text-center" data-aos="fade-up" data-aos-duration="600" data-aos-delay="200">
-                    <div class="w-24 h-24 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-8">
-                        <i data-lucide="check-circle" class="w-12 h-12 text-green-600"></i>
+                        <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-4 tracking-tight">Reliable</h3>
+                        <p class="text-gray-600 text-base sm:text-lg leading-relaxed">Trusted by hundreds of satisfied customers</p>
                     </div>
-                    <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-4 tracking-tight">Reliable ✅</h3>
-                    <p class="text-gray-600 text-base sm:text-lg leading-relaxed">Trusted by hundreds of satisfied customers</p>
+                    
+                    <div class="text-center" data-aos="fade-up" data-aos-duration="600" data-aos-delay="300">
+                        <div class="w-24 h-24 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-8">
+                            <i data-lucide="shield" class="w-12 h-12 text-blue-600"></i>
                 </div>
-                
-                <div class="text-center" data-aos="fade-up" data-aos-duration="600" data-aos-delay="300">
-                    <div class="w-24 h-24 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-8">
-                        <i data-lucide="shield" class="w-12 h-12 text-blue-600"></i>
+                        <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-4 tracking-tight">Warranty</h3>
+                        <p class="text-gray-600 text-base sm:text-lg leading-relaxed">All repairs come with comprehensive warranty</p>
                     </div>
-                    <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-4 tracking-tight">Warranty</h3>
-                    <p class="text-gray-600 text-base sm:text-lg leading-relaxed">All repairs come with comprehensive warranty</p>
+                    
+                    <div class="text-center" data-aos="fade-up" data-aos-duration="600" data-aos-delay="400">
+                        <div class="w-24 h-24 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-8">
+                            <i data-lucide="star" class="w-12 h-12 text-purple-600"></i>
                 </div>
-                
-                <div class="text-center" data-aos="fade-up" data-aos-duration="600" data-aos-delay="400">
-                    <div class="w-24 h-24 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-8">
-                        <i data-lucide="star" class="w-12 h-12 text-purple-600"></i>
-                    </div>
-                    <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-4 tracking-tight">Expert Service</h3>
-                    <p class="text-gray-600 text-base sm:text-lg leading-relaxed">Professional technicians with years of experience</p>
+                        <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-4 tracking-tight">Expert Service</h3>
+                        <p class="text-gray-600 text-base sm:text-lg leading-relaxed">Professional technicians with years of experience</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Why Choose Mi Fix Section -->
-    <section id="why-us" class="relative min-h-screen flex items-center bg-gradient-to-br from-orange-50 to-red-50 py-20 overflow-hidden">
-        <!-- Tech Decorative Elements -->
-        <div class="absolute top-32 right-1/4 w-16 h-16 bg-orange-400/30 rounded-lg animate-pulse" style="animation-delay: 2s;">
-            <i data-lucide="shield-check" class="w-full h-full text-orange-300/40"></i>
-        </div>
-        <div class="absolute bottom-32 left-1/4 w-20 h-20 bg-red-400/25 rounded-xl animate-bounce" style="animation-delay: 1.2s;">
-            <i data-lucide="tool" class="w-full h-full text-red-300/35"></i>
-        </div>
-        <div class="absolute top-1/2 right-24 w-14 h-14 bg-orange-300/35 rounded-full animate-spin" style="animation-duration: 10s;">
-            <i data-lucide="refresh-cw" class="w-full h-full text-orange-400/45"></i>
-        </div>
-        <div class="absolute bottom-1/3 left-24 w-18 h-18 bg-red-300/30 rounded-lg animate-pulse" style="animation-delay: 3s;">
-            <i data-lucide="check-circle" class="w-full h-full text-red-400/40"></i>
-        </div>
-        <div class="absolute top-40 left-1/2 w-12 h-12 bg-orange-500/25 rounded-full animate-bounce" style="animation-delay: 0.3s;">
-            <i data-lucide="star" class="w-full h-full text-orange-300/35"></i>
-        </div>
-        <!-- Phone silhouette pattern -->
-        <div class="absolute top-0 left-0 w-72 h-72 opacity-8 animate-pulse" style="animation-duration: 5s;">
-            <svg viewBox="0 0 100 150" class="w-full h-full">
-                <rect x="20" y="10" width="60" height="130" rx="15" fill="none" stroke="#ea580c" stroke-width="1" opacity="0.2"/>
-                <rect x="25" y="20" width="50" height="80" rx="5" fill="#dc2626" opacity="0.1"/>
-                <circle cx="50" cy="120" r="8" fill="none" stroke="#ea580c" stroke-width="1" opacity="0.2"/>
-            </svg>
-        </div>
-        
-        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-            <div class="text-center mb-16 pt-12" data-aos="fade-up" data-aos-duration="800">
-                <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">Why Choose Mi Fix?</h2>
+        <section id="why-us" class="relative min-h-screen flex items-center bg-gradient-to-br from-orange-50 to-red-50 py-20 overflow-hidden">
+            <!-- Tech Decorative Elements -->
+            <div class="absolute top-32 right-1/4 w-16 h-16 bg-orange-400/30 rounded-lg animate-pulse" style="animation-delay: 2s;">
+                <i data-lucide="shield-check" class="w-full h-full text-orange-300/40"></i>
+            </div>
+            <div class="absolute bottom-32 left-1/4 w-20 h-20 bg-red-400/25 rounded-xl animate-bounce" style="animation-delay: 1.2s;">
+                <i data-lucide="tool" class="w-full h-full text-red-300/35"></i>
+            </div>
+            <div class="absolute top-1/2 right-24 w-14 h-14 bg-orange-300/35 rounded-full animate-spin" style="animation-duration: 10s;">
+                <i data-lucide="refresh-cw" class="w-full h-full text-orange-400/45"></i>
+            </div>
+            <div class="absolute bottom-1/3 left-24 w-18 h-18 bg-red-300/30 rounded-lg animate-pulse" style="animation-delay: 3s;">
+                <i data-lucide="check-circle" class="w-full h-full text-red-400/40"></i>
+            </div>
+            <div class="absolute top-40 left-1/2 w-12 h-12 bg-orange-500/25 rounded-full animate-bounce" style="animation-delay: 0.3s;">
+                <i data-lucide="star" class="w-full h-full text-orange-300/35"></i>
+            </div>
+            <!-- Phone silhouette pattern -->
+            <div class="absolute top-0 left-0 w-72 h-72 opacity-8 animate-pulse" style="animation-duration: 5s;">
+                <svg viewBox="0 0 100 150" class="w-full h-full">
+                    <rect x="20" y="10" width="60" height="130" rx="15" fill="none" stroke="#ea580c" stroke-width="1" opacity="0.2"/>
+                    <rect x="25" y="20" width="50" height="80" rx="5" fill="#dc2626" opacity="0.1"/>
+                    <circle cx="50" cy="120" r="8" fill="none" stroke="#ea580c" stroke-width="1" opacity="0.2"/>
+                </svg>
+            </div>
+            
+            <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+                <div class="text-center mb-16 pt-12" data-aos="fade-up" data-aos-duration="800">
+                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 tracking-tight">Why Choose Mi Fix?</h2>
                 <p class="text-lg text-gray-600">
-                    We're not just another repair shop - we're your mobile device specialists
+                    We're not just another repair shop. We're your mobile device specialist.
                 </p>
             </div>
             
             <div class="grid md:grid-cols-3 gap-8 mb-16">
-                <div class="bg-white p-8 rounded-xl shadow-sm" data-aos="zoom-in" data-aos-duration="600" data-aos-delay="200">
+                    <div class="bg-white p-8 rounded-xl shadow-sm" data-aos="zoom-in" data-aos-duration="600" data-aos-delay="200">
                     <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mb-6">
                         <i data-lucide="clock" class="w-6 h-6 text-orange-600"></i>
                     </div>
@@ -461,7 +561,7 @@
                     </p>
                 </div>
                 
-                <div class="bg-white p-8 rounded-xl shadow-sm" data-aos="zoom-in" data-aos-duration="600" data-aos-delay="400">
+                    <div class="bg-white p-8 rounded-xl shadow-sm" data-aos="zoom-in" data-aos-duration="600" data-aos-delay="400">
                     <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mb-6">
                         <i data-lucide="award" class="w-6 h-6 text-orange-600"></i>
                     </div>
@@ -471,7 +571,7 @@
                     </p>
                 </div>
                 
-                <div class="bg-white p-8 rounded-xl shadow-sm" data-aos="zoom-in" data-aos-duration="600" data-aos-delay="600">
+                    <div class="bg-white p-8 rounded-xl shadow-sm" data-aos="zoom-in" data-aos-duration="600" data-aos-delay="600">
                     <div class="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mb-6">
                         <i data-lucide="users" class="w-6 h-6 text-orange-600"></i>
                     </div>
@@ -489,40 +589,40 @@
     <!-- Reviews Section -->
     <section id="reviews" class="py-24 bg-gray-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-20" data-aos="fade-up" data-aos-duration="800">
-                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 tracking-tight">Customer Reviews</h2>
-                <p class="text-lg sm:text-xl text-gray-600 leading-relaxed max-w-4xl mx-auto">
+                <div class="text-center mb-20" data-aos="fade-up" data-aos-duration="800">
+                    <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 tracking-tight">Customer Reviews</h2>
+                    <p class="text-lg sm:text-xl text-gray-600 leading-relaxed max-w-4xl mx-auto">
                     Don't just take our word for it - see what our customers have to say
                 </p>
             </div>
             
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
                 <!-- Review 1 -->
-                <div class="bg-white p-8 rounded-xl shadow-sm" data-aos="fade-up" data-aos-duration="600" data-aos-delay="100">
-                    <div class="flex items-center mb-6">
+                    <div class="bg-white p-8 rounded-xl shadow-sm" data-aos="fade-up" data-aos-duration="600" data-aos-delay="100">
+                        <div class="flex items-center mb-6">
                         <img 
                             src="https://lh3.googleusercontent.com/a-/ALV-UjXSN2lO4-2d3uEldFvhZ86d2AbsiUaMw3ee0dopnvNHUKFTf6sh=w54-h54-p-rp-mo-ba4-br100" 
                             alt="Sutharshan Sivagnanam profile picture"
-                            class="w-14 h-14 rounded-full mr-4 object-cover"
+                                class="w-14 h-14 rounded-full mr-4 object-cover"
                         >
                         <div>
-                            <h4 class="font-bold text-gray-900 text-lg">Sutharshan Sivagnanam</h4>
-                            <div class="flex mt-2">
-                                <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i>
-                                <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i>
-                                <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i>
-                                <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i>
-                                <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i>
+                                <h4 class="font-bold text-gray-900 text-lg">Sutharshan Sivagnanam</h4>
+                                <div class="flex mt-2">
+                                    <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i>
+                                    <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i>
+                                    <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i>
+                                    <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i>
+                                    <i data-lucide="star" class="w-5 h-5 text-yellow-400 fill-current"></i>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <p class="text-gray-600 text-base leading-relaxed">
+                        <p class="text-gray-600 text-base leading-relaxed">
                         "My phone had water damage and I thought it was gone forever. Mi Fix brought it back to life! Amazing work and very professional."
                     </p>
                 </div>
                 
                 <!-- Review 2 -->
-                <div class="bg-white p-6 rounded-xl shadow-sm" data-aos="fade-up" data-aos-duration="600" data-aos-delay="200">
+                    <div class="bg-white p-6 rounded-xl shadow-sm" data-aos="fade-up" data-aos-duration="600" data-aos-delay="200">
                     <div class="flex items-center mb-4">
                         <img 
                             src="https://lh3.googleusercontent.com/a-/ALV-UjVkLdY-qibzlL4KqIww5vNItGDx2JuSkmNz-FS97-mzp7gClaii=w54-h54-p-rp-mo-br100" 
@@ -546,7 +646,7 @@
                 </div>
                 
                 <!-- Review 3 -->
-                <div class="bg-white p-6 rounded-xl shadow-sm" data-aos="fade-up" data-aos-duration="600" data-aos-delay="300">
+                    <div class="bg-white p-6 rounded-xl shadow-sm" data-aos="fade-up" data-aos-duration="600" data-aos-delay="300">
                     <div class="flex items-center mb-4">
                         <img 
                             src="https://lh3.googleusercontent.com/a-/ALV-UjUjVG-Wd5krZN9sAYJ08qqqkOsCdL0ijyEcDjTeB_dl-eFn6BOq=w54-h54-p-rp-mo-br100" 
@@ -570,7 +670,7 @@
                 </div>
                 
                 <!-- Review 4 -->
-                <div class="bg-white p-6 rounded-xl shadow-sm" data-aos="fade-up" data-aos-duration="600" data-aos-delay="400">
+                    <div class="bg-white p-6 rounded-xl shadow-sm" data-aos="fade-up" data-aos-duration="600" data-aos-delay="400">
                     <div class="flex items-center mb-4">
                         <img 
                             src="https://lh3.googleusercontent.com/a-/ALV-UjUZwIAuZAikAqSb4ZOvqIowB0x9ogM4YlYEGDw7xYdTozuCgR_Y=w54-h54-p-rp-mo-br100" 
@@ -594,7 +694,7 @@
                 </div>
                 
                 <!-- Review 5 -->
-                <div class="bg-white p-6 rounded-xl shadow-sm" data-aos="fade-up" data-aos-duration="600" data-aos-delay="500">
+                    <div class="bg-white p-6 rounded-xl shadow-sm" data-aos="fade-up" data-aos-duration="600" data-aos-delay="500">
                     <div class="flex items-center mb-4">
                         <img 
                             src="https://lh3.googleusercontent.com/a-/ALV-UjXP-SwJsCLFr85GSo6DHcndM7xT_tH7ioKQQDGeFf5HPfXpyTCt=w54-h54-p-rp-mo-br100" 
@@ -618,7 +718,7 @@
                 </div>
                 
                 <!-- Review 6 -->
-                <div class="bg-white p-6 rounded-xl shadow-sm" data-aos="fade-up" data-aos-duration="600" data-aos-delay="600">
+                    <div class="bg-white p-6 rounded-xl shadow-sm" data-aos="fade-up" data-aos-duration="600" data-aos-delay="600">
                     <div class="flex items-center mb-4">
                         <img 
                             src="https://lh3.googleusercontent.com/a-/ALV-UjU5wTiSpVF0bgn-EH7uep-eRHZgcOYz5wqL7T736xM35-d-BOmEGQ=w54-h54-p-rp-mo-ba4-br100" 
@@ -647,16 +747,16 @@
     <!-- Contact Section -->
     <section id="contact" class="min-h-screen flex items-center bg-gray-900 text-white py-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-            <div class="text-center mb-20 pt-16" data-aos="fade-up" data-aos-duration="800">
-                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 tracking-tight text-white">Get In Touch</h2>
-                <p class="text-lg sm:text-xl text-gray-300 leading-relaxed max-w-3xl mx-auto">
+                <div class="text-center mb-20 pt-16" data-aos="fade-up" data-aos-duration="800">
+                    <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 tracking-tight text-white">Get In Touch</h2>
+                    <p class="text-lg sm:text-xl text-gray-300 leading-relaxed max-w-3xl mx-auto">
                     Ready to fix your phone? Contact us today
                 </p>
             </div>
             
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 max-w-6xl mx-auto">
                 <!-- Contact Information Card -->
-                <div class="bg-slate-800 rounded-2xl p-6 sm:p-8 shadow-xl border border-slate-700" data-aos="fade-right" data-aos-duration="800" data-aos-delay="200">
+                    <div class="bg-slate-800 rounded-2xl p-6 sm:p-8 shadow-xl border border-slate-700" data-aos="fade-right" data-aos-duration="800" data-aos-delay="200">
                     <div class="flex items-center mb-8">
                         <div class="w-12 h-12 bg-orange-600 rounded-xl flex items-center justify-center mr-4">
                             <i data-lucide="phone" class="w-6 h-6 text-white"></i>
@@ -716,7 +816,7 @@
                 </div>
                 
                 <!-- Google Map -->
-                <div class="bg-white rounded-xl shadow-sm overflow-hidden" data-aos="fade-left" data-aos-duration="800" data-aos-delay="400">
+                    <div class="bg-white rounded-xl shadow-sm overflow-hidden" data-aos="fade-left" data-aos-duration="800" data-aos-delay="400">
                     <div class="p-4 sm:p-6">
                         <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4">Find Us</h3>
                         <p class="text-gray-600 mb-4 sm:mb-6 text-sm sm:text-base">Visit our store at 367 New Street, Weligama for professional mobile phone repairs</p>
@@ -738,7 +838,7 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-slate-800 text-white py-12 sm:py-16 lg:py-20 font-poppins">
+        <footer class="bg-slate-800 text-white py-12 sm:py-16 lg:py-20 font-poppins">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 min-[750px]:grid-cols-4 gap-8 lg:gap-12">
                 <!-- Company Info -->
@@ -747,56 +847,55 @@
                         <div class="w-10 h-10 sm:w-12 sm:h-12 bg-orange-600 rounded flex items-center justify-center">
                             <i data-lucide="smartphone" class="w-5 h-5 sm:w-6 sm:h-6 text-white"></i>
                         </div>
-                        <span class="text-xl sm:text-2xl font-bold tracking-tight">Mi Fix</span>
+                            <span class="text-xl sm:text-2xl font-bold tracking-tight">Mi Fix</span>
                     </div>
-                    <p class="text-gray-300 text-sm sm:text-base leading-relaxed max-w-xs mx-auto min-[750px]:mx-0 font-medium">
+                        <p class="text-gray-300 text-sm sm:text-base leading-relaxed max-w-xs mx-auto min-[750px]:mx-0 font-medium">
                         Professional mobile phone repair specialists located in Weligama. Expert technicians providing quality repairs since 2020.
                     </p>
                 </div>
 
                 <!-- Quick Links -->
                 <div class="text-center min-[750px]:text-left">
-                    <h3 class="text-lg sm:text-xl font-bold text-white mb-4 sm:mb-6 tracking-tight">Quick Links</h3>
-                    <ul class="space-y-2 sm:space-y-3">
-                        <li><a href="#home" class="text-gray-300 hover:text-orange-600 transition-colors text-sm sm:text-base font-medium">Home</a></li>
-                        <li><a href="#services" class="text-gray-300 hover:text-orange-600 transition-colors text-sm sm:text-base font-medium">Services</a></li>
-                        <li><a href="#about" class="text-gray-300 hover:text-orange-600 transition-colors text-sm sm:text-base font-medium">About</a></li>
-                        <li><a href="#reviews" class="text-gray-300 hover:text-orange-600 transition-colors text-sm sm:text-base font-medium">Reviews</a></li>
-                        <li><a href="#contact" class="text-gray-300 hover:text-orange-600 transition-colors text-sm sm:text-base font-medium">Contact</a></li>
+                        <h3 class="text-lg sm:text-xl font-bold text-white mb-4 sm:mb-6 tracking-tight">Quick Links</h3>
+                                        <ul class="space-y-2 sm:space-y-3">
+                        <li><a href="#home" class="text-gray-300 hover:text-orange-600 active:text-gray-300 visited:text-gray-300 focus:text-gray-300 focus:outline-none transition-colors text-sm sm:text-base font-medium">Home</a></li>
+                        <li><a href="#services" class="text-gray-300 hover:text-orange-600 active:text-gray-300 visited:text-gray-300 focus:text-gray-300 focus:outline-none transition-colors text-sm sm:text-base font-medium">Services</a></li>
+                        <li><a href="#about" class="text-gray-300 hover:text-orange-600 active:text-gray-300 visited:text-gray-300 focus:text-gray-300 focus:outline-none transition-colors text-sm sm:text-base font-medium">About</a></li>
+                        <li><a href="#reviews" class="text-gray-300 hover:text-orange-600 active:text-gray-300 visited:text-gray-300 focus:text-gray-300 focus:outline-none transition-colors text-sm sm:text-base font-medium">Reviews</a></li>
+                        <li><a href="#contact" class="text-gray-300 hover:text-orange-600 active:text-gray-300 visited:text-gray-300 focus:text-gray-300 focus:outline-none transition-colors text-sm sm:text-base font-medium">Contact</a></li>
                     </ul>
                 </div>
 
                 <!-- Contact Us -->
                 <div class="text-center min-[750px]:text-left">
-                    <h3 class="text-lg sm:text-xl font-bold text-white mb-4 sm:mb-6 tracking-tight">Contact Us</h3>
+                        <h3 class="text-lg sm:text-xl font-bold text-white mb-4 sm:mb-6 tracking-tight">Contact Us</h3>
                     <div class="space-y-3 sm:space-y-4">
                         <div class="flex items-start justify-center min-[750px]:justify-start space-x-3">
                             <i data-lucide="map-pin" class="w-4 h-4 sm:w-5 sm:h-5 text-orange-600 mt-1 flex-shrink-0"></i>
-                            <p class="text-gray-300 text-sm sm:text-base text-left font-medium">367 New Street, Weligama</p>
+                                <p class="text-gray-300 text-sm sm:text-base text-left font-medium">367 New Street, Weligama</p>
                         </div>
                         <div class="flex items-start justify-center min-[750px]:justify-start space-x-3">
                             <i data-lucide="phone" class="w-4 h-4 sm:w-5 sm:h-5 text-orange-600 mt-1 flex-shrink-0"></i>
-                            <p class="text-gray-300 text-sm sm:text-base font-medium">+94 77 425 0800</p>
+                                <p class="text-gray-300 text-sm sm:text-base font-medium">+94 77 425 0800</p>
                         </div>
                         <div class="flex items-start justify-center min-[750px]:justify-start space-x-3">
                             <i data-lucide="mail" class="w-4 h-4 sm:w-5 sm:h-5 text-orange-600 mt-1 flex-shrink-0"></i>
-                            <p class="text-gray-300 text-sm sm:text-base text-left break-all font-medium">mukrimmohamed2@gmail.com</p>
+                                <p class="text-gray-300 text-sm sm:text-base text-left break-all font-medium">mukrimmohamed2@gmail.com</p>
                         </div>
                     </div>
                 </div>
 
                 <!-- Follow Us -->
                 <div class="text-center min-[750px]:text-left">
-                    <h3 class="text-lg sm:text-xl font-bold text-white mb-4 sm:mb-6 tracking-tight">Follow Us</h3>
+                        <h3 class="text-lg sm:text-xl font-bold text-white mb-4 sm:mb-6 tracking-tight">Follow Us</h3>
                     <div class="flex space-x-3 sm:space-x-4 justify-center min-[750px]:justify-start">
-                        <a href="https://web.facebook.com/mk.ms.988" target="_blank" rel="noopener" class="w-10 h-10 sm:w-12 sm:h-12 bg-orange-600 rounded flex items-center justify-center hover:bg-orange-700 transition-colors">
+                            <a href="https://facebook.com/mk.ms.988" target="_blank" rel="noopener" class="w-10 h-10 sm:w-12 sm:h-12 bg-orange-600 rounded flex items-center justify-center hover:bg-orange-700 transition-colors">
                             <i data-lucide="facebook" class="w-4 h-4 sm:w-5 sm:h-5 text-white"></i>
                         </a>
-                        <a href="#" class="w-10 h-10 sm:w-12 sm:h-12 bg-orange-600 rounded flex items-center justify-center hover:bg-orange-700 transition-colors">
-                            <i data-lucide="linkedin" class="w-4 h-4 sm:w-5 sm:h-5 text-white"></i>
-                        </a>
-                        <a href="#" class="w-10 h-10 sm:w-12 sm:h-12 bg-orange-600 rounded flex items-center justify-center hover:bg-orange-700 transition-colors">
-                            <i data-lucide="instagram" class="w-4 h-4 sm:w-5 sm:h-5 text-white"></i>
+                        <a href="https://www.tiktok.com/@mifix37" target="_blank" rel="noopener" class="w-10 h-10 sm:w-12 sm:h-12 bg-orange-600 rounded flex items-center justify-center hover:bg-orange-700 transition-colors">
+                            <svg class="w-4 h-4 sm:w-5 sm:h-5 text-white fill-current" viewBox="0 0 24 24">
+                                <path d="M12.53.02C13.84 0 15.14.01 16.44 0c.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
+                            </svg>
                         </a>
                     </div>
                 </div>
@@ -805,7 +904,7 @@
             <!-- Bottom Bar -->
             <div class="border-t border-gray-700 mt-8 sm:mt-12 pt-6 sm:pt-8">
                 <div class="text-center">
-                    <p class="text-gray-400 text-sm sm:text-base font-medium">
+                        <p class="text-gray-400 text-sm sm:text-base font-medium">
                         © 2025 Mi Fix | ❤️ Designed by Zig Zag
                     </p>
                 </div>
@@ -813,10 +912,11 @@
         </div>
     </footer>
 
-    <!-- Scroll To Top Button -->
-    <button id="scroll-top-btn" title="Back to top" class="fixed bottom-6 right-6 sm:bottom-8 sm:right-8 md:bottom-10 md:right-10 bg-orange-600 text-white p-3 sm:p-4 md:p-4 rounded-full shadow-lg opacity-0 pointer-events-none transition-opacity duration-300 ease-in-out hover:bg-orange-700 focus:outline-none z-[90]">
-        <i data-lucide="chevron-up" class="w-5 h-5 sm:w-6 sm:h-6"></i>
-    </button>
+        <!-- Scroll To Top Button -->
+        <button id="scroll-top-btn" title="Back to top" class="fixed bottom-6 right-6 sm:bottom-8 sm:right-8 md:bottom-10 md:right-10 bg-orange-600 text-white p-3 sm:p-4 md:p-4 rounded-full shadow-lg opacity-0 pointer-events-none transition-opacity duration-300 ease-in-out hover:bg-orange-700 focus:outline-none z-[90]">
+            <i data-lucide="chevron-up" class="w-5 h-5 sm:w-6 sm:h-6"></i>
+        </button>
+    </div>
 
     <script src="assets/js/script.js"></script>
 </body>

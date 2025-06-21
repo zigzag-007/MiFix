@@ -1,3 +1,114 @@
 html, body {
     overflow-x: hidden;
-} 
+}
+
+/* Logo Glow Effect - Complex animation that's easier in CSS than Tailwind */
+@keyframes glowPulse {
+    0%, 100% {
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+    }
+    50% {
+        box-shadow: 0 0 40px rgba(255, 255, 255, 0.6), 0 0 60px rgba(234, 88, 12, 0.4);
+    }
+}
+
+.loading-logo {
+    animation: glowPulse 2s ease-in-out infinite;
+}
+
+/* Responsive adjustments for loading screen */
+@media (max-width: 640px) {
+    .loading-logo {
+        width: 100px !important;
+        height: 100px !important;
+    }
+    
+    .loading-logo .smartphone-icon {
+        width: 50px !important;
+        height: 50px !important;
+    }
+    
+    .loading-title {
+        font-size: 2.5rem !important;
+    }
+}
+
+/* Remove default focus outline for navbar elements */
+nav a:focus {
+    outline: none;
+}
+
+nav button:focus {
+    outline: none;
+}
+
+/* Loading Wrapper Animations */
+.loading-bar {
+    width: 0;
+    animation: fillProgress 2s ease-in-out forwards;
+}
+
+.loading-dots::after {
+    content: '';
+    animation: loadingDots 1.5s infinite;
+}
+
+/* Progress Bar Fill Animation */
+@keyframes fillProgress {
+    0% {
+        width: 0%;
+    }
+    25% {
+        width: 25%;
+    }
+    50% {
+        width: 50%;
+    }
+    75% {
+        width: 75%;
+    }
+    100% {
+        width: 100%;
+    }
+}
+
+/* Loading Dots Animation */
+@keyframes loadingDots {
+    0% {
+        content: '';
+    }
+    25% {
+        content: '.';
+    }
+    50% {
+        content: '..';
+    }
+    75% {
+        content: '...';
+    }
+    100% {
+        content: '';
+    }
+}
+
+/* Fade Out Animation for Loading Wrapper */
+.fade-out {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.8s ease-in-out;
+}
+
+/* Fade In Animation for Main Content */
+.fade-in {
+    opacity: 1 !important;
+    transition: opacity 1s ease-in-out;
+}
+
+/* Remove default focus outline for navbar elements */
+nav a:focus {
+    outline: none;
+}
+
+nav button:focus {
+    outline: none;
+}
