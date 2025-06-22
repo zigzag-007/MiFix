@@ -68,6 +68,11 @@ document.addEventListener('DOMContentLoaded', function() {
         mobileMenuOverlay.classList.remove('opacity-0', 'pointer-events-none');
         mobileMenuOverlay.classList.add('opacity-100');
         document.body.classList.add('overflow-hidden');
+        
+        // Hide hamburger button when menu is open
+        if (mobileMenuBtn) {
+            mobileMenuBtn.classList.add('opacity-0', 'pointer-events-none');
+        }
     }
     
     function closeMobileMenu() {
@@ -75,6 +80,11 @@ document.addEventListener('DOMContentLoaded', function() {
         mobileMenuOverlay.classList.add('opacity-0', 'pointer-events-none');
         mobileMenuOverlay.classList.remove('opacity-100');
         document.body.classList.remove('overflow-hidden');
+        
+        // Show hamburger button when menu is closed
+        if (mobileMenuBtn) {
+            mobileMenuBtn.classList.remove('opacity-0', 'pointer-events-none');
+        }
     }
     
     if (mobileMenuBtn && mobileMenu) {
@@ -445,5 +455,242 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
+    // Mobile menu active state management with curved highlights
+    function updateMobileMenuActiveState() {
+        const mobileMenuItems = document.querySelectorAll('.mobile-menu-item');
+        const currentSection = getCurrentSection();
+        
+        mobileMenuItems.forEach(item => {
+            const href = item.getAttribute('href');
+            const targetSection = href ? href.substring(1) : ''; // Remove #
+            
+            if (targetSection === currentSection) {
+                // Add curved highlight for active section - exactly same as hover
+                item.style.background = 'linear-gradient(to right, rgb(254, 215, 170), rgb(254, 215, 170))';
+                item.style.color = '#ea580c';
+                item.style.transform = 'translateX(4px)';
+                
+                // Force override the hover background element to show active state
+                const hoverBg = item.querySelector('.absolute.inset-0');
+                if (hoverBg) {
+                    hoverBg.style.background = 'linear-gradient(to right, rgb(254, 215, 170), rgb(254, 215, 170))';
+                    hoverBg.style.opacity = '1';
+                }
+                
+                // Update icon background - same as hover
+                const iconContainer = item.querySelector('.w-8.h-8');
+                if (iconContainer) {
+                    iconContainer.style.background = 'rgb(254, 215, 170)';
+                    iconContainer.style.color = '#ea580c';
+                }
+            } else {
+                // Reset styles for non-active items
+                item.style.background = '';
+                item.style.color = '';
+                item.style.transform = '';
+                
+                // Reset hover background element
+                const hoverBg = item.querySelector('.absolute.inset-0');
+                if (hoverBg) {
+                    hoverBg.style.background = '';
+                    hoverBg.style.opacity = '';
+                }
+                
+                const iconContainer = item.querySelector('.w-8.h-8');
+                if (iconContainer) {
+                    iconContainer.style.background = '';
+                    iconContainer.style.color = '';
+                }
+            }
+        });
+    }
+    
+    // Get current section based on scroll position
+    function getCurrentSection() {
+        const sections = ['home', 'services', 'about', 'features', 'why-us', 'reviews', 'gallery', 'contact'];
+        let currentSection = 'home';
+        const scrollPosition = window.scrollY + 150; // Account for fixed nav height
+        
+        // Check if we're at the bottom of the page (improved detection)
+        const windowHeight = window.innerHeight;
+        const documentHeight = document.documentElement.scrollHeight;
+        const scrollTop = window.scrollY;
+        const isAtBottom = (scrollTop + windowHeight) >= (documentHeight - 100);
+        
+        // If at bottom, always show contact as active
+        if (isAtBottom) {
+            return 'contact';
+        }
+        
+        // Check contact section specifically first (since it's the last section)
+        const contactSection = document.getElementById('contact');
+        if (contactSection) {
+            const contactTop = contactSection.offsetTop;
+            const contactHeight = contactSection.offsetHeight;
+            
+            // If we're anywhere in the contact section or beyond it
+            if (scrollPosition >= contactTop) {
+                return 'contact';
+            }
+        }
+        
+        // Find the current section based on scroll position (reverse order for better detection)
+        for (let i = sections.length - 1; i >= 0; i--) {
+            const sectionId = sections[i];
+            const section = document.getElementById(sectionId);
+            if (section) {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.offsetHeight;
+                
+                if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                    currentSection = sectionId;
+                    break;
+                }
+            }
+        }
+        
+        return currentSection;
+    }
+    
+    // Update active state on scroll
+    window.addEventListener('scroll', updateMobileMenuActiveState);
+    
+    // Initial call to set active state
+    updateMobileMenuActiveState();
+    
     console.log('Mi Fix website loaded successfully!');
-}); 
+
+    // Initialize scroll to top functionality
+    initScrollToTop();
+});
+
+// Gallery modal with swipe and arrow navigation
+let currentImageIndex = 0;
+let galleryImages = [];
+let touchStartX = 0;
+let touchEndX = 0;
+
+// Initialize gallery images array
+function initializeGallery() {
+    galleryImages = [
+        { src: 'assets/img/motherboard-repair-work.png', caption: 'Motherboard Repair Work' },
+        { src: 'assets/img/smartphone-repair-process.png', caption: 'Smartphone Repair Process' },
+        { src: 'assets/img/chip-level-repair.png', caption: 'Chip Level Repair' },
+        { src: 'assets/img/screen-replacement-work.png', caption: 'Screen Replacement Work' },
+        { src: 'assets/img/battery-replacement.png', caption: 'Battery Replacement' },
+        { src: 'assets/img/water-damage-repair.png', caption: 'Water Damage Repair' },
+        { src: 'assets/img/charging-port-repair.png', caption: 'Charging Port Repair' },
+        { src: 'assets/img/expert-technician-work.jpg', caption: 'Expert Technician Work' },
+        { src: 'assets/img/equipment-tools-1.jpg', caption: 'Professional Tools' },
+        { src: 'assets/img/repair-process.jpg', caption: 'Repair Process' },
+        { src: 'assets/img/repair-showcase-1.jpg', caption: 'Repair Showcase' },
+        { src: 'assets/img/repair-showcase-3.jpg', caption: 'Expert Showcase' }
+    ];
+}
+
+function openModal(imageSrc, caption) {
+    // Find the current image index
+    currentImageIndex = galleryImages.findIndex(img => img.src === imageSrc);
+    if (currentImageIndex === -1) currentImageIndex = 0;
+    
+    const modal = document.getElementById('imageModal');
+    updateModalImage();
+    
+    modal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+    
+    // Add touch event listeners for swipe
+    modal.addEventListener('touchstart', handleTouchStart, { passive: true });
+    modal.addEventListener('touchend', handleTouchEnd, { passive: true });
+    
+    // Reinitialize lucide icons
+    lucide.createIcons();
+}
+
+function updateModalImage() {
+    const modalImage = document.getElementById('modalImage');
+    const modalCaption = document.getElementById('modalCaption');
+    const imageCounter = document.getElementById('imageCounter');
+    const currentImage = galleryImages[currentImageIndex];
+    
+    // Add fade transition
+    modalImage.style.opacity = '0';
+    
+    setTimeout(() => {
+        modalImage.src = currentImage.src;
+        modalImage.alt = currentImage.caption;
+        modalCaption.textContent = currentImage.caption;
+        imageCounter.textContent = `${currentImageIndex + 1} / ${galleryImages.length}`;
+        modalImage.style.opacity = '1';
+    }, 150);
+}
+
+function nextImage() {
+    currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
+    updateModalImage();
+}
+
+function prevImage() {
+    currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
+    updateModalImage();
+}
+
+function closeModal() {
+    const modal = document.getElementById('imageModal');
+    modal.classList.add('hidden');
+    document.body.style.overflow = 'auto';
+    
+    // Remove touch event listeners
+    modal.removeEventListener('touchstart', handleTouchStart);
+    modal.removeEventListener('touchend', handleTouchEnd);
+}
+
+// Touch event handlers for swipe gestures
+function handleTouchStart(e) {
+    touchStartX = e.changedTouches[0].screenX;
+}
+
+function handleTouchEnd(e) {
+    touchEndX = e.changedTouches[0].screenX;
+    handleSwipe();
+}
+
+function handleSwipe() {
+    const swipeThreshold = 50; // Minimum distance for a swipe
+    const swipeDistance = touchEndX - touchStartX;
+    
+    if (Math.abs(swipeDistance) > swipeThreshold) {
+        if (swipeDistance > 0) {
+            // Swipe right - previous image
+            prevImage();
+        } else {
+            // Swipe left - next image
+            nextImage();
+        }
+    }
+}
+
+// Keyboard navigation
+document.addEventListener('keydown', function(e) {
+    const modal = document.getElementById('imageModal');
+    const isModalOpen = !modal.classList.contains('hidden');
+    
+    if (isModalOpen) {
+        switch(e.key) {
+            case 'Escape':
+                closeModal();
+                break;
+            case 'ArrowLeft':
+                e.preventDefault();
+                prevImage();
+                break;
+            case 'ArrowRight':
+                e.preventDefault();
+                nextImage();
+                break;
+        }
+    }
+});
+
+// Initialize gallery on page load
+initializeGallery(); 
