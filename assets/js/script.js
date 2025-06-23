@@ -573,17 +573,17 @@ let touchEndX = 0;
 // Initialize gallery images array
 function initializeGallery() {
     galleryImages = [
-        { src: 'assets/img/motherboard-repair-work.png', caption: 'Motherboard Repair Work' },
-        { src: 'assets/img/smartphone-repair-process.png', caption: 'Smartphone Repair Process' },
-        { src: 'assets/img/chip-level-repair.png', caption: 'Chip Level Repair' },
-        { src: 'assets/img/screen-replacement-work.png', caption: 'Screen Replacement Work' },
-        { src: 'assets/img/battery-replacement.png', caption: 'Battery Replacement' },
+        { src: 'assets/img/motherboard-repair-work.png', caption: 'Software Flash Service' },
+        { src: 'assets/img/smartphone-repair-process.png', caption: 'IC Replacement Service' },
+        { src: 'assets/img/chip-level-repair.png', caption: 'Charging Error Fix' },
+        { src: 'assets/img/screen-replacement-work.png', caption: 'IC Replacement Service' },
+        { src: 'assets/img/battery-replacement.png', caption: 'IC Repair Service' },
         { src: 'assets/img/water-damage-repair.png', caption: 'Water Damage Repair' },
-        { src: 'assets/img/charging-port-repair.png', caption: 'Charging Port Repair' },
-        { src: 'assets/img/expert-technician-work.jpg', caption: 'Expert Technician Work' },
-        { src: 'assets/img/equipment-tools-1.jpg', caption: 'Professional Tools' },
-        { src: 'assets/img/repair-process.jpg', caption: 'Repair Process' },
-        { src: 'assets/img/repair-showcase-1.jpg', caption: 'Repair Showcase' },
+        { src: 'assets/img/charging-port-repair.png', caption: 'IC Repair Service' },
+        { src: 'assets/img/expert-technician-work.jpg', caption: 'Water Damage Restoration' },
+        { src: 'assets/img/equipment-tools-1.jpg', caption: 'Water Damage Repair' },
+        { src: 'assets/img/repair-process.jpg', caption: 'White Screen Fix' },
+        { src: 'assets/img/repair-showcase-1.jpg', caption: 'White Screen Fix' },
         { src: 'assets/img/repair-showcase-3.jpg', caption: 'Expert Showcase' }
     ];
 }
